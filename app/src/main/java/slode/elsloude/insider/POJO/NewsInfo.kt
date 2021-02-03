@@ -12,6 +12,7 @@ import slode.elsloude.insider.converters.Converters
 
 @Entity(tableName = "full_news_list")
 @TypeConverter(values = Converters::class.java)
+
 internal data class NewsInfo(
     @PrimaryKey @ColumnInfo(name = "id")
     @SerializedName("source")
