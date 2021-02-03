@@ -3,8 +3,8 @@ package slode.elsloude.insider.converters
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import slode.elsloude.insider.POJO.NewsInfo
 import slode.elsloude.insider.POJO.NewsInfoId
-
 class Converters {
     @TypeConverter
     fun listCategoryToString(newsInfoId: List<NewsInfoId>?): String {

@@ -2,20 +2,21 @@ package slode.elsloude.insider.POJO
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import com.google.gson.annotations.Expose
-
 import com.google.gson.annotations.SerializedName
 import slode.elsloude.insider.converters.Converters
 
 @Entity(tableName = "full_news_list")
-data class NewsInfo(
-
+@TypeConverter(values = Converters::class.java)
+internal data class NewsInfo(
+    @PrimaryKey @ColumnInfo(name = "id")
     @SerializedName("source")
     @Expose
-    private val source: NewsInfoId? = null,
+    val source: NewsInfoId? = null,
 
     @SerializedName("author")
     @Expose
@@ -39,8 +40,4 @@ data class NewsInfo(
 
     @SerializedName("publishedAt")
     @Expose
-    val publishedAt: String? = null,
-
-    @SerializedName("content")
-    @Expose
-    val content: String? = null)
+    val publishedAt: String? = null)
