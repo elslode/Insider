@@ -1,146 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".detail_news">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="11dp"
+    android:layout_marginTop="7dp"
+    android:layout_marginRight="11dp"
+    android:layout_marginBottom="7dp"
+    app:cardCornerRadius="10dp"
+    app:cardPreventCornerOverlap="false"
+    app:cardElevation="@dimen/cardview_default_radius"
+    tools:context=".DetailNews">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="11dp"
-        android:layout_marginRight="11dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="7dp"
-        app:cardElevation="@dimen/cardview_default_radius"
-        app:cardCornerRadius="10dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageViewLogo"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/LOGO"
+            android:layout_gravity="center"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <ImageView
-                android:id="@+id/img"
-                android:transitionName="img"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="centerCrop"
-                tools:ignore="UnusedAttribute"/>
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="TextView"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Author" />
 
-            <ImageView
-                android:id="@+id/imgShadow_top"
-                android:src="@drawable/bottom_shadow"
-                android:layout_alignBottom="@id/img"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"/>
+        <TextView
+            android:id="@+id/Author"
+            android:textStyle="italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Author"
+            app:layout_constraintBottom_toTopOf="@id/textViewTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewLogo"/>
 
-            <ProgressBar
-                android:id="@+id/prograss_Bar_load_photo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
-                style="@android:style/Widget.ProgressBar.Small"/>
+        <TextView
+            android:id="@+id/publishedAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="7dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+            android:text="10:12:14"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
-            <TextView
-                android:id="@+id/author"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:drawablePadding="10dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/white"
-                android:singleLine="true"
-                android:layout_marginRight="160dp"
-                android:text="Author"
-                android:gravity="bottom"
-                android:layout_alignRight="@+id/layoutData"
-                android:layout_alignTop="@+id/layoutData"
-                android:layout_alignEnd="@+id/layoutData"/>
 
-            <FrameLayout
-                android:id="@+id/layoutData"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/img"
-                android:background="@drawable/round_white"
-                android:padding="5dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="-50dp">
-
-                <ImageView
-                    android:src="@drawable/ic_date"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"/>
-
-                <TextView
-                    android:id="@+id/publishedAt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="27dp"
-                    android:layout_marginRight="10dp"
-                    android:text="01 January 1990"
-                    android:textColor="#606060"/>
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-light"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:text="Title"
-                android:textSize="17dp"
-                android:layout_marginTop="10dp"
-                android:layout_below="@+id/img"/>
-
-            <TextView
-                android:id="@+id/desc"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_below="@id/title"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="5dp"
-                android:text="Desc"/>
-
-            <TextView
-                android:id="@+id/source"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_below="@id/desc"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
-                android:textStyle="italic"
-                android:fontFamily="sans-serif-light"
-                android:text="Source"
-                android:textColor="@color/black"
-                android:maxLines="1"
-                android:drawablePadding="10dp"
-                android:singleLine="true"
-                android:ellipsize="end"/>
-
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_toRightOf="@id/source"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_below="@id/desc"
-                android:maxLines="1"
-                android:drawablePadding="10dp"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:layout_marginLeft="10dp"
-                android:text="Time"/>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-</FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

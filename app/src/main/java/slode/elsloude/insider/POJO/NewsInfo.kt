@@ -1,44 +1,16 @@
 package slode.elsloude.insider.POJO
 
-import android.os.Parcel
-import android.os.Parcelable
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-import slode.elsloude.insider.converters.Converters
+import androidx.room.*
 
 @Entity(tableName = "full_news_list")
-@TypeConverter(values = Converters::class.java)
-
-internal data class NewsInfo(
-    @PrimaryKey @ColumnInfo(name = "id")
-    @SerializedName("source")
-    @Expose
-    val source: NewsInfoId? = null,
-
-    @SerializedName("author")
-    @Expose
-    val author: String? = null,
-
-    @SerializedName("title")
-    @Expose
+data class NewsInfo(
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null,
+    val author: String,
+    val content: String,
+    val description: String,
+    val publishedAt: String,
+    val source: NewsInfoId,
     val title: String,
-
-    @SerializedName("description")
-    @Expose
-    val description: String? = null,
-
-    @SerializedName("url")
-    @Expose
-    val url: String? = null,
-
-    @SerializedName("urlToImage")
-    @Expose
-    val urlToImage: String? = null,
-
-    @SerializedName("publishedAt")
-    @Expose
-    val publishedAt: String? = null)
+    val url: String,
+    val urlToImage: String)

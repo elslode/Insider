@@ -6,15 +6,16 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import slode.elsloude.insider.POJO.NewsInfo
+import slode.elsloude.insider.POJO.NewsInfoListOfData
 
 @Dao
 interface NewsInfoListDao {
     @Query("SELECT *FROM full_news_list ORDER BY publishedAt")
-    fun getNewsList(): LiveData<NewsInfo>
+    fun getNewsList(): LiveData<List<NewsInfo>>
 
     @Query("SELECT * FROM full_news_list")
-    fun getTotalInfoAboutNews(): LiveData<NewsInfo>
+    fun getTotalInfoAboutNews(): LiveData<List<NewsInfo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNewsList(newsList: List<NewsInfo>)
+    fun insertNewsList(newsList: NewsInfo)
 }
