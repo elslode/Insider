@@ -35,14 +35,10 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
             with(news) {
                 Picasso.get().load(urlToImage).into(holder.ivLogo)
                 tvTitle.text = news.title
-                if (news.author == null || news.author.equals("")) {
-                    tvAuthor.visibility = View.GONE
-                } else {
-                    holder.tvAuthor.text =
-                        context.getString(R.string.author_string, news.author)
-                }
+                holder.tvAuthor.text = news.author
                 holder.tvPublishedAt.text = news.publishedAt
                 holder.source.text = news.source.toString()
+                onNewsClickListener?.onNewsClick(this)
             }
         }
     }

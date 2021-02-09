@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".item_detail_activityForNews_into"
+        tools:context=".DetainActivityNews"
         android:background="@color/black">
 
         <ImageView

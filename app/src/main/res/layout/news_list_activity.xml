@@ -19,14 +19,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/item_detail_news" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="#44FDECE2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
