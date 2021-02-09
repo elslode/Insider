@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Insider</string>
+    <string name="author_string">by %s</string>
 </resources>

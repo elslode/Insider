@@ -10,12 +10,12 @@ import slode.elsloude.insider.POJO.NewsInfoListOfData
 
 @Dao
 interface NewsInfoListDao {
-    @Query("SELECT *FROM full_news_list ORDER BY publishedAt")
+    @Query("SELECT *FROM full_news_list")
     fun getNewsList(): LiveData<List<NewsInfo>>
 
     @Query("SELECT * FROM full_news_list")
     fun getTotalInfoAboutNews(): LiveData<List<NewsInfo>>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNewsList(newsList: NewsInfo)
+    @Insert(onConflict = OnConflictStrategy.ABORT)
+    fun insertNewsList(newsList: List<NewsInfo>)
 }

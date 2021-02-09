@@ -5,7 +5,7 @@ import androidx.room.*
 @Entity(tableName = "full_news_list")
 data class NewsInfo(
     @PrimaryKey(autoGenerate = true)
-    var id: Int? = null,
+    var id: Int,
     val author: String,
     val content: String,
     val description: String,
