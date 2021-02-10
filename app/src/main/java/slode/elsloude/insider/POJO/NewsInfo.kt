@@ -4,6 +4,7 @@ import androidx.room.*
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+
 @Entity(tableName = "full_news_list")
 data class NewsInfo(
     @PrimaryKey(autoGenerate = true)
