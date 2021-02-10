@@ -1,6 +1,10 @@
 package slode.elsloude.insider.POJO
 
-data class NewsInfoId (
-    val id: Any,
-    val name: String
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
+data class NewsInfoId(
+    @SerializedName("Name")
+    @Expose
+    val name: String? = null,
 )

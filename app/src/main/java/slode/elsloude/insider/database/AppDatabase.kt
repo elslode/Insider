@@ -6,7 +6,7 @@ import slode.elsloude.insider.POJO.NewsInfo
 
 @Database(
     entities = [NewsInfo::class],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 @TypeConverters(Converters::class)

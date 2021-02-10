@@ -22,7 +22,7 @@ class NewsListActivity : AppCompatActivity() {
 
         recyclerViewListNews.adapter = adapter
         viewModel = ViewModelProviders.of(this)[NewsViewModel::class.java]
-        viewModel.NewsInfo.observe(this, Observer {
+        viewModel.newsInfo.observe(this, Observer {
             adapter.newsToList = it
         })
 

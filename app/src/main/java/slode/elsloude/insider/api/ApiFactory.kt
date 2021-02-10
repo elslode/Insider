@@ -21,6 +21,4 @@ object ApiFactory {
     private val newsService: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
-
-
 }

@@ -14,17 +14,16 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private val db = AppDatabase.getInstance(application)
     private val compositeDisposable = CompositeDisposable()
 
-    val NewsInfo = db.NewsInfoListDao().getNewsList()
+    val newsInfo = db.NewsInfoListDao().getNewsList()
 
     fun loadData() {
         val disposable = ApiFactory.apiService.getTopHeadlines()
             .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                    it.articles
-                    Log.d("TEST_OF_Data_LOADINF", it.toString())
+                    it.articles?.let { db.NewsInfoListDao().insertNewsList(it) }
+                    Log.d("TEST_OF_LOADING_DATs", it.toString())
             },{
-                Log.d("TEST_OF_Data_LOADINF", it.message.toString())
+                Log.d("TEST_OF_LOADING_DATs", it.message.toString())
             })
         compositeDisposable.addAll(disposable)
     }
