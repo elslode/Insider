@@ -49,14 +49,15 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
 
     inner class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivLogo = itemView.imageViewLogo
-        val ivLogo2 = itemView.imageViewLogoInItemDetailActivity
         val tvTitle = itemView.textViewTitle
-        val tvTitle2 = itemView.title2
         val tvAuthor = itemView.Author
-        val tvAuthor2 = itemView.textViewAuthorInItemDetailActivity
         val tvPublishedAt = itemView.publishedAt
-        val description = itemView.description
         val source = itemView.source
+
+        val ivLogo2 = itemView.imageViewLogoInItemDetailActivity
+        val tvTitle2 = itemView.title2
+        val tvAuthor2 = itemView.textViewAuthorInItemDetailActivity
+        val description = itemView.description
     }
 
     interface OnNewsClickListener {

@@ -18,12 +18,16 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun loadData() {
         val disposable = ApiFactory.apiService.getTopHeadlines()
+            .repeat()
+            .retry()
             .subscribeOn(Schedulers.io())
             .subscribe({
+                if (it != null) {
                     it.articles?.let { db.NewsInfoListDao().insertNewsList(it) }
-                    Log.d("TEST_OF_LOADING_DATs", it.toString())
+                    Log.d("TEST_DATA", it.toString())
+                }
             },{
-                Log.d("TEST_OF_LOADING_DATs", it.message.toString())
+                Log.d("TEST_DATA", it.message.toString())
             })
         compositeDisposable.addAll(disposable)
     }

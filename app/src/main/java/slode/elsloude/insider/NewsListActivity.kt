@@ -25,6 +25,5 @@ class NewsListActivity : AppCompatActivity() {
         viewModel.newsInfo.observe(this, Observer {
             adapter.newsToList = it
         })
-
     }
 }
