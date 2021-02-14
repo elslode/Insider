@@ -10,6 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import slode.elsloude.insider.POJO.NewsInfo
 import slode.elsloude.insider.api.ApiFactory
 import slode.elsloude.insider.database.AppDatabase
+import java.util.concurrent.TimeUnit
 
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -18,14 +19,16 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     val newsInfo = db.NewsInfoListDao().getNewsList()
 
-    fun getDetailInfo(): LiveData<List<NewsInfo>> {
-       return db.NewsInfoListDao().getNewsList()
+
+    fun getNewsInfoo(): LiveData<List<NewsInfo>> {
+        return db.NewsInfoListDao().getNewsList()
     }
 
     fun loadData() {
         val disposable = ApiFactory.apiService.getTopHeadlines()
             .repeat()
             .retry()
+            .delaySubscription(1, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
             .subscribe({
                 if (it != null) {

@@ -9,14 +9,17 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_item_detail_for_news_into.*
 import kotlinx.android.synthetic.main.activity_item_detail_for_news_into.view.*
+import kotlinx.android.synthetic.main.item_detail_news.view.*
 import kotlinx.android.synthetic.main.news_list_activity.*
 import slode.elsloude.insider.POJO.NewsInfo
 import slode.elsloude.insider.adapter.NewsAdapter
 import slode.elsloude.insider.database.AppDatabase
 
+@SuppressWarnings( "deprecation" )
 class DetainActivityNews : AppCompatActivity() {
 
     private lateinit var viewModel: NewsViewModel
@@ -24,14 +27,12 @@ class DetainActivityNews : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_detail_for_news_into)
-        viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
-        viewModel.getDetailInfo().observe(this, Observer {
+        ViewModelProvider(this).get(NewsViewModel::class.java).also { viewModel = it }
+        viewModel.getNewsInfoo().observe(this, Observer {
             it.let {
                 Observer<NewsInfo> {
                     Picasso.get().load(it.urlToImage).into(imageViewLogoInItemDetailActivity)
-                    textViewAuthorInItemDetailActivity.text = it.author
-                    title2.text = it.title
-                    description.text = it.description
+                    textViewAuthorInItemDetailActivity.text = it.author.toString()
                 }
             }
         })

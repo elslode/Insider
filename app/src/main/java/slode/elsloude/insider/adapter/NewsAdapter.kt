@@ -41,6 +41,11 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
                 }
                 holder.tvPublishedAt.text = news.publishedAt
                 holder.source.text = news.source?.name
+                if  (news.source == null || news.source.equals("")) {
+                    holder.source.visibility = View.INVISIBLE
+                } else {
+                    context.resources.getString(R.string.source_name)
+                }
                 holder.itemView.setOnClickListener {
                     onNewsClickListener?.onNewsClick(this)
                 }

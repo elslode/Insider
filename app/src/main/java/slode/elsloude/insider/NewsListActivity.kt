@@ -33,7 +33,6 @@ class NewsListActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this)[NewsViewModel::class.java]
         viewModel.newsInfo.observe(this, Observer {
                 adapter.newsToList = it
-                Log.d("adapter", it.toString())
         })
         viewModel.newsInfo.observe(this, Observer {
             let {
