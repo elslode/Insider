@@ -1,17 +1,15 @@
 package slode.elsloude.insider.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_item_detail_for_news_into.view.*
 import kotlinx.android.synthetic.main.item_detail_news.view.*
-import slode.elsloude.insider.NewsViewModel
+import slode.elsloude.insider.POJO.NewsInfo
 import slode.elsloude.insider.R
-import slode.elsloude.insider.POJO.NewsInfo as NewsInfo
 
 class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
@@ -36,9 +34,16 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
                 Picasso.get().load(urlToImage).into(holder.ivLogo)
                 tvTitle.text = news.title
                 holder.tvAuthor.text = news.author
+                if (news.author == null || news.author.equals("")) {
+                    tvAuthor.visibility = View.GONE
+                } else {
+                    context.resources.getString(R.string.author_string)
+                }
                 holder.tvPublishedAt.text = news.publishedAt
-                holder.source.text = news.source.toString()
-                onNewsClickListener?.onNewsClick(this)
+                holder.source.text = news.source?.name
+                holder.itemView.setOnClickListener {
+                    onNewsClickListener?.onNewsClick(this)
+                }
             }
         }
     }
@@ -53,15 +58,9 @@ class NewsAdapter(private val context: Context) : RecyclerView.Adapter<NewsAdapt
         val tvAuthor = itemView.Author
         val tvPublishedAt = itemView.publishedAt
         val source = itemView.source
-
-        val ivLogo2 = itemView.imageViewLogoInItemDetailActivity
-        val tvTitle2 = itemView.title2
-        val tvAuthor2 = itemView.textViewAuthorInItemDetailActivity
-        val description = itemView.description
     }
 
     interface OnNewsClickListener {
         fun onNewsClick(newsInfoClick: NewsInfo)
     }
-
 }

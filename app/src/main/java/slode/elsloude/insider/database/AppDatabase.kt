@@ -6,7 +6,7 @@ import slode.elsloude.insider.POJO.NewsInfo
 
 @Database(
     entities = [NewsInfo::class],
-    version = 4,
+    version = 6,
     exportSchema = false
 )
 @TypeConverters(Converters::class)
@@ -20,7 +20,9 @@ abstract class AppDatabase : RoomDatabase() {
             synchronized(LOCK) {
                 db?.let { return it }
                 val instance =
-                    Room.databaseBuilder(context, AppDatabase::class.java, DB_NAME).fallbackToDestructiveMigration().build()
+                    Room.databaseBuilder(context, AppDatabase::class.java, DB_NAME)
+                        .fallbackToDestructiveMigration()
+                        .build()
                 db = instance
                 return instance
             }

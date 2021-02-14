@@ -11,14 +11,14 @@ interface ApiService {
 
     @GET("v2/top-headlines")
     fun getTopHeadlines (
-        @Query(QUERY_PARAM_API_KEY) apiKey: String = "31c7fa574f004bfcad3b6b4dc859a299",
+        @Query(QUERY_PARAM_API_KEY) apiKey: String = "d8c0ff913b7649c58bf1c5cd2bc2e91b",
         @Query(QUERY_PARAM_COUNTRY) country: String = LANGUAGE
     ): Single<NewsInfoListOfData>
 
     @GET("v2/everything")
     fun getEverything (
         @Query(QUERY_PARAM_API_KEY)
-        apiKey: String = "31c7fa574f004bfcad3b6b4dc859a299",
+        apiKey: String = "d8c0ff913b7649c58bf1c5cd2bc2e91b",
         @Query(QUERY_PARAM_Q)
         q: String = "USA",
         @Query("page")

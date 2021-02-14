@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Insider">
         <activity android:name=".DetainActivityNews"></activity>
-        <activity android:name=".DetailNews" />
         <activity android:name=".NewsListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,5 +20,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
