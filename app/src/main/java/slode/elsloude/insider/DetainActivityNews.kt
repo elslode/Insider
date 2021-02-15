@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
@@ -24,17 +25,22 @@ class DetainActivityNews : AppCompatActivity() {
         val id = intent.getIntExtra("id", 1)
 
         id?.let {
-            viewModel.getDetailInfo(it).observe(this, Observer {
-                Observer<NewsInfo> {
-                    Picasso.get().load(it.urlToImage).into(imageViewLogoInItemDetailActivity)
-                    textViewAuthorInItemDetailActivity.text = it.author.toString()
-                    description.text = it.description.toString()
+            viewModel.getDetailInfo(it).observe(this, {
+                val news = it.get(0)
+                Picasso.get().load(news.urlToImage).into(imageViewLogoInItemDetailActivity)
+                textViewAuthorInItemDetailActivity.text = news.author.toString()
+                if (news.author == null || news.author.equals("")) {
+                    textViewAuthorInItemDetailActivity.visibility = View.GONE
+                } else {
+                    this.resources.getString(R.string.author_string)
                 }
+                description.text = news.description.toString()
+                title2.text = news.title.toString()
             })
         }
     }
 
-   companion object {
+    companion object {
         fun newIntent(context: Context, id: Int?): Intent {
             val intent = Intent(context, DetainActivityNews::class.java)
             intent.putExtra("id", id)
