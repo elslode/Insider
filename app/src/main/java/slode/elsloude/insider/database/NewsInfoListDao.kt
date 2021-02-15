@@ -12,8 +12,8 @@ interface NewsInfoListDao {
     @Query("SELECT *FROM full_news_list")
     fun getNewsList(): LiveData<List<NewsInfo>>
 
-    @Query("SELECT * FROM full_news_list")
-    fun getTotalInfoAboutNews(): LiveData<List<NewsInfo>>
+    @Query("SELECT * FROM full_news_list WHERE id == :id LIMIT 1")
+    fun getTotalInfoAboutNews(id: Int): LiveData<List<NewsInfo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertNewsList(newsList: List<NewsInfo>)

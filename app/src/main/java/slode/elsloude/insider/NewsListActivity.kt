@@ -1,9 +1,8 @@
 @file:Suppress("DEPRECATION")
 
 package slode.elsloude.insider
+
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -21,10 +20,12 @@ class NewsListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.news_list_activity)
         val adapter = NewsAdapter(this)
+
         adapter.onNewsClickListener = object : NewsAdapter.OnNewsClickListener {
             override fun onNewsClick(newsInfoClick: NewsInfo) {
                 val intent = DetainActivityNews.newIntent(
-                    this@NewsListActivity
+                   this@NewsListActivity,
+                    newsInfoClick.id
                 )
                 startActivity(intent)
             }
@@ -32,7 +33,7 @@ class NewsListActivity : AppCompatActivity() {
         recyclerViewListNews.adapter = adapter
         viewModel = ViewModelProviders.of(this)[NewsViewModel::class.java]
         viewModel.newsInfo.observe(this, Observer {
-                adapter.newsToList = it
+            adapter.newsToList = it
         })
         viewModel.newsInfo.observe(this, Observer {
             let {
