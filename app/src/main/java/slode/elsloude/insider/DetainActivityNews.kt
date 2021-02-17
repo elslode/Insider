@@ -1,15 +1,20 @@
 package slode.elsloude.insider
-
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
+import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_item_detail_for_news_into.*
-import slode.elsloude.insider.POJO.NewsInfo
+import kotlinx.android.synthetic.main.activity_item_detail_for_news_into.view.*
+import java.util.*
+
 
 @SuppressWarnings("deprecation")
 class DetainActivityNews : AppCompatActivity() {
@@ -21,7 +26,6 @@ class DetainActivityNews : AppCompatActivity() {
         setContentView(R.layout.activity_item_detail_for_news_into)
 
         viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
-
         val id = intent.getIntExtra("id", 1)
 
         id?.let {
@@ -36,6 +40,14 @@ class DetainActivityNews : AppCompatActivity() {
                 }
                 description.text = news.description.toString()
                 title2.text = news.title.toString()
+                if (webView !== null) {
+                    val webSettings = webView.settings
+                    webSettings.javaScriptEnabled = true
+
+                    webView.webViewClient = WebViewClient()
+                    webView.webChromeClient = WebChromeClient()
+                    webView.loadUrl(news.url.toString())
+                }
             })
         }
     }
@@ -47,4 +59,5 @@ class DetainActivityNews : AppCompatActivity() {
             return intent
         }
     }
+
 }

@@ -24,8 +24,9 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun loadData() {
         val disposable = ApiFactory.apiService.getTopHeadlines()
+            .delaySubscription(100, TimeUnit.SECONDS)
+            .repeat()
             .retry()
-            .delaySubscription(1, TimeUnit.SECONDS)
             .subscribeOn(Schedulers.io())
             .subscribe({
                 if (it != null) {
