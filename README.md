@@ -8,3 +8,7 @@ You can make your own by going to the site and registering.
 
 All inform you can take it: 
 https://newsapi.org/docs/endpoints/top-headlines
+
+In the future, such improvements are planned as:
+1.Auto-update of news by swipe
+2.search bar for news by keyword.
