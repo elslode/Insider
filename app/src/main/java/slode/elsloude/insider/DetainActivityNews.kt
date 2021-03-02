@@ -28,7 +28,7 @@ class DetainActivityNews : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(NewsViewModel::class.java)
         val id = intent.getIntExtra("id", 1)
 
-        id?.let {
+        id.let {
             viewModel.getDetailInfo(it).observe(this, {
                 val news = it.get(0)
                 Picasso.get().load(news.urlToImage).into(imageViewLogoInItemDetailActivity)

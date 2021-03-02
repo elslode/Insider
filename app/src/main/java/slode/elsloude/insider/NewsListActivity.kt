@@ -7,12 +7,13 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.news_list_activity.*
 import slode.elsloude.insider.POJO.NewsInfo
 import slode.elsloude.insider.adapter.NewsAdapter
 
-@Suppress("DEPRECATION")
-class NewsListActivity : AppCompatActivity() {
+
+class NewsListActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     lateinit var viewModel: NewsViewModel
 
@@ -24,7 +25,7 @@ class NewsListActivity : AppCompatActivity() {
         adapter.onNewsClickListener = object : NewsAdapter.OnNewsClickListener {
             override fun onNewsClick(newsInfoClick: NewsInfo) {
                 val intent = DetainActivityNews.newIntent(
-                   this@NewsListActivity,
+                    this@NewsListActivity,
                     newsInfoClick.id
                 )
                 startActivity(intent)
@@ -35,10 +36,25 @@ class NewsListActivity : AppCompatActivity() {
         viewModel.newsInfo.observe(this, Observer {
             adapter.newsToList = it
         })
+
         viewModel.newsInfo.observe(this, Observer {
             let {
                 progressBar.visibility = View.GONE
             }
         })
+        swipeRefreshLayout.setOnRefreshListener(this)
+        swipeRefreshLayout.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener() {
+            onRefresh()
+        })
     }
+
+    override fun onRefresh() {
+        swipeRefreshLayout.postDelayed(Runnable {
+            viewModel.loadData()
+            swipeRefreshLayout.isRefreshing = false
+        }, 3000)
+    }
+
+
 }
+

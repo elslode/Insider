@@ -10,6 +10,7 @@ import slode.elsloude.insider.POJO.NewsInfo
 import slode.elsloude.insider.api.ApiFactory
 import slode.elsloude.insider.database.AppDatabase
 import java.util.concurrent.TimeUnit
+import kotlin.reflect.KMutableProperty1
 
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -24,19 +25,19 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun loadData() {
         val disposable = ApiFactory.apiService.getTopHeadlines()
-            .delaySubscription(100, TimeUnit.SECONDS)
-            .repeat()
-            .retry()
+            .map { it.articles}
+//            .delaySubscription(10, TimeUnit.SECONDS)
+//            .repeat()
+//            .retry()
             .subscribeOn(Schedulers.io())
             .subscribe({
                 if (it != null) {
-                    it.articles?.let { db.NewsInfoListDao().insertNewsList(it) }
+                    db.NewsInfoListDao().insertNewsList(it) }
                     Log.d("TEST_DATA", it.toString())
-                }
             }, {
-                Log.d("TEST_DATA", it.message.toString())
+                Log.d("TEST_DATA", "Failure: ${it.message}")
             })
-        compositeDisposable.addAll(disposable)
+        compositeDisposable.add(disposable)
     }
 
     init {

@@ -16,5 +16,5 @@ interface NewsInfoListDao {
     fun getTotalInfoAboutNews(id: Int): LiveData<List<NewsInfo>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertNewsList(newsList: List<NewsInfo>)
+    fun insertNewsList(newsList: List<NewsInfo>?)
 }
